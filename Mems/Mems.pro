@@ -8,13 +8,18 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
+QT += serialport
 TARGET = Mems
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    dlgrs.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    dlgrs.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dlgrs.ui
