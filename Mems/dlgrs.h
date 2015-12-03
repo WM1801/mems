@@ -2,6 +2,8 @@
 #define DLGRS_H
 
 #include <QDialog>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 namespace Ui {
 class DlgRs;
