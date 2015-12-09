@@ -77,7 +77,7 @@ void Console::setEnabled(bool b)
     else
     {
         p = palette();
-        p.setColor(QPalette::Base, QColor(241,241,241));
+        p.setColor(QPalette::Base, QColor(150,150,150));
         p.setColor(QPalette::Text, Qt::black);
 
 

@@ -35,7 +35,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboPort"/>
+         <widget class="QComboBox" name="comboPortRs"/>
         </item>
        </layout>
       </item>
@@ -161,6 +161,13 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkHexView">
+          <property name="text">
+           <string>hex view</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
