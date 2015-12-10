@@ -35,8 +35,8 @@ DlgRs::DlgRs(QWidget *parent) :
             this, SLOT(updateSetting(int)));
     connect(ui->comboStopBits, SIGNAL(currentIndexChanged(int)),
             this, SLOT(updateSetting(int)));
-    addTextConsole("Hello", true);
-    addTextConsole("privet", false);
+  //  addTextConsole("Hello", true);
+  //  addTextConsole("privet", false);
 
 }
 
