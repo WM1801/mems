@@ -37,6 +37,7 @@ DlgRs::DlgRs(QWidget *parent) :
             this, SLOT(updateSetting(int)));
   //  addTextConsole("Hello", true);
   //  addTextConsole("privet", false);
+    qDebug() << "start";
 
 }
 
