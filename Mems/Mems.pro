@@ -17,11 +17,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dlgrs.cpp \
-    console.cpp
+    console.cpp \
+    port.cpp
 
 HEADERS  += mainwindow.h \
     dlgrs.h \
-    console.h
+    console.h \
+    port.h
 
 FORMS    += mainwindow.ui \
     dlgrs.ui
