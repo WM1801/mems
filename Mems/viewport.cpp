@@ -253,11 +253,11 @@ void ViewPort::addTextConsole(QByteArray s, bool PrmWrt)
 
 void ViewPort::getData(QByteArray bA)
 {
-    qDebug() << "data in";
+    //qDebug() << "data in";
     QByteArray data = bA;
 
     addTextConsole(bA, true);
-   // newData(data);
+    newData(data);
     data.clear();
 }
 

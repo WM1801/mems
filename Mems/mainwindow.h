@@ -20,6 +20,11 @@ public:
     DlgRs* dlgRS;
     ViewPort* vPort;
 
+public slots:
+    void getData(QByteArray bA);
+private slots:
+    void on_actionTerminal_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

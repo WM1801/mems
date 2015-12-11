@@ -34,6 +34,7 @@ private:
     void nSettingPort(My::SettingPort s);
     void sOpenPort();
     void sClosePort();
+    void newData(QByteArray);
 public slots:
 
 

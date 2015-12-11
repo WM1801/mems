@@ -20,15 +20,20 @@ SOURCES += main.cpp\
     console.cpp \
     port.cpp \
     viewport.cpp \
-    settingport.cpp
+    settingport.cpp \
+    writefile.cpp
 
 HEADERS  += mainwindow.h \
     dlgrs.h \
     console.h \
     port.h \
     viewport.h \
-    settingport.h
+    settingport.h \
+    writefile.h
 
 FORMS    += mainwindow.ui \
     dlgrs.ui \
     viewport.ui
+
+RESOURCES += \
+    qrc.qrc
