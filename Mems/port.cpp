@@ -2,11 +2,13 @@
 
 Port::Port(QObject *parent) : QObject(parent)
 {
+    qRegisterMetaType<My::SettingPort>("My::SettingPort");
     qDebug() << "start port";
     connect(&serial, SIGNAL(error(QSerialPort::SerialPortError)),
             this, SLOT(handlerError(QSerialPort::SerialPortError)));
     connect(&serial, SIGNAL(readyRead()),
             this, SLOT(readPort()));
+
 
 }
 
@@ -16,8 +18,9 @@ Port::~Port()
     emit finished_Port();
 }
 
-void Port::setSettingPort(Settings s)
+void Port::setSettingPort(My::SettingPort s)
 {
+    disconnectPort();
     currentSetting.name = s.name;
     currentSetting.baudRate = s.baudRate;
     currentSetting.dataBits = (QSerialPort::DataBits)s.dataBits;
@@ -56,7 +59,7 @@ void Port::connectPort()
 
 void Port::handlerError(QSerialPort::SerialPortError errors)
 {
-    if((serial.isOpen())&& (errors == QSerialPort::ResourceError))
+    if((serial.isOpen())&& (errors ==  QSerialPort::ResourceError))
     {
         emit error(currentSetting.name.toLocal8Bit() + serial.errorString().toLocal8Bit());
         disconnectPort();
@@ -83,9 +86,14 @@ void Port::writeData(QByteArray bA)
 
 void Port::readPort()
 {
-    QByteArray data;
-    data.append(serial.readAll());
-    emit outPort(data);
+
+    emit outPort(serial.readAll());
+
+}
+
+bool Port::getIsOpenPort()
+{
+    return serial.isOpen();
 }
 
 

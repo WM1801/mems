@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <dlgrs.h>
+#include <viewport.h>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,7 @@ public:
     ~MainWindow();
 
     DlgRs* dlgRS;
+    ViewPort* vPort;
 
 private:
     Ui::MainWindow *ui;

@@ -6,8 +6,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    dlgRS = new DlgRs(this);
-    dlgRS->show();
+    //dlgRS = new DlgRs(this);
+    //dlgRS->show();
+    vPort = new ViewPort();
+    vPort->show();
 }
 
 MainWindow::~MainWindow()

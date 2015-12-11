@@ -18,12 +18,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dlgrs.cpp \
     console.cpp \
-    port.cpp
+    port.cpp \
+    viewport.cpp \
+    settingport.cpp
 
 HEADERS  += mainwindow.h \
     dlgrs.h \
     console.h \
-    port.h
+    port.h \
+    viewport.h \
+    settingport.h
 
 FORMS    += mainwindow.ui \
-    dlgrs.ui
+    dlgrs.ui \
+    viewport.ui
