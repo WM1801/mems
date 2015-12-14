@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <dlgrs.h>
 #include <viewport.h>
+#include <parsdata.h>
 
 namespace Ui {
 class MainWindow;
@@ -19,11 +20,19 @@ public:
 
     DlgRs* dlgRS;
     ViewPort* vPort;
+    ParsData *pars;
+
+    QByteArray data;
 
 public slots:
     void getData(QByteArray bA);
 private slots:
     void on_actionTerminal_triggered();
+
+    void on_actionWriteLog_triggered();
+
+    void getParsDataMems(FormatMsg::DataMems dan);
+    void getParsDataMemsList(QList<FormatMsg::DataMems> listMsg);
 
 private:
     Ui::MainWindow *ui;

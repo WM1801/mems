@@ -9,9 +9,16 @@ class WriteFile : public QObject
 public:
     explicit WriteFile(QObject *parent = 0);
 
+
+
+
 signals:
 
 public slots:
+    void openFile(QString name);
+    void addStr(QString str);
+    void closeFile(QString name);
+
 };
 
 #endif // WRITEFILE_H

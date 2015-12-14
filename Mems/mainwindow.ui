@@ -32,6 +32,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionTerminal"/>
+   <addaction name="actionWriteLog"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionTerminal">
@@ -47,6 +48,18 @@
    </property>
    <property name="toolTip">
     <string>Terminal</string>
+   </property>
+  </action>
+  <action name="actionWriteLog">
+   <property name="icon">
+    <iconset resource="qrc.qrc">
+     <normaloff>:/Image/log.png</normaloff>:/Image/log.png</iconset>
+   </property>
+   <property name="text">
+    <string>WriteLog</string>
+   </property>
+   <property name="toolTip">
+    <string>Записать в файл</string>
    </property>
   </action>
  </widget>

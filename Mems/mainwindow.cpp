@@ -13,16 +13,30 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(vPort, SIGNAL(newData(QByteArray)),
             this, SLOT(getData(QByteArray)));
 
+    pars = new ParsData();
+
+    connect(pars, SIGNAL(newDataMems(FormatMsg::DataMems)),
+            this, SLOT(getParsDataMems(FormatMsg::DataMems)));
+    connect(pars, SIGNAL(newDataMemsList(QList<FormatMsg::DataMems>)),
+            this, SLOT(getParsDataMemsList(QList<FormatMsg::DataMems>)));
+
+
 }
 
 MainWindow::~MainWindow()
 {
+
     delete ui;
 }
-
+// принятые данные из RS
 void MainWindow::getData(QByteArray bA)
 {
-    qDebug()<< bA.toHex();
+
+    data.append(bA);
+  // qDebug()<< data.toHex();
+    // отправлены на декодирование
+    pars->parsComList(data);
+    data.clear();
 }
 
 void MainWindow::on_actionTerminal_triggered()
@@ -34,5 +48,28 @@ void MainWindow::on_actionTerminal_triggered()
     else
     {
         vPort->show();
+    }
+}
+
+void MainWindow::on_actionWriteLog_triggered()
+{
+
+}
+
+void MainWindow::getParsDataMems(FormatMsg::DataMems dan)
+{
+    qDebug()<< "modul =" << dan.numberMod
+    << "count = " << dan.count
+    << "Xg = " << dan.Xg;
+}
+
+void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
+{
+    if(listMsg.size()>0)
+    {
+        qDebug()<< "modul =" << listMsg.at(0).numberMod
+        << "count = " << listMsg.at(0).count
+        << "Xg = " << listMsg.at(0).Xg;
+        listMsg.removeFirst();
     }
 }
