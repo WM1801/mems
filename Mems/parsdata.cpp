@@ -163,9 +163,9 @@ FormatMsg::DataMems ParsData::decode(QByteArray bA)
           /*Ta*/byteH = mas[FormatMsg::ADR_TAH];
                 byteL = mas[FormatMsg::ADR_TAL];
                 (byteH & 0x80)? dan.Ta = (-65536 + ((byteH<<8)|byteL)) : dan.Ta = ((byteH<<8)|byteL);
-          /*Ta*/byteH = mas[FormatMsg::ADR_TGH];
+          /*Tg*/byteH = mas[FormatMsg::ADR_TGH];
                 byteL = mas[FormatMsg::ADR_TGL];
-                (byteH & 0x80)? dan.Ta = (-255 + ((byteH<<8)|byteL)) : dan.Ta = ((byteH<<8)|byteL);
+                (byteL & 0x80)? dan.Tg = (-255 + ((byteH<<8)|byteL)) : dan.Tg = ((byteH<<8)|byteL);
 
                 dan.count = mas[FormatMsg::ADR_COUNT];
                 dan.numberMod = mas[FormatMsg::ADR_NUM_MODUL];

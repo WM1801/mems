@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(getParsDataMems(FormatMsg::DataMems)));
     connect(pars, SIGNAL(newDataMemsList(QList<FormatMsg::DataMems>)),
             this, SLOT(getParsDataMemsList(QList<FormatMsg::DataMems>)));
-
+   viewInt = 0;
 
 }
 
@@ -67,9 +67,22 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
 {
     if(listMsg.size()>0)
     {
-        qDebug()<< "modul =" << listMsg.at(0).numberMod
-        << "count = " << listMsg.at(0).count
-        << "Xg = " << listMsg.at(0).Xg;
-        listMsg.removeFirst();
+        viewInt++;
+        if(viewInt>100)
+        {
+        qDebug()<< "1 msg iz 100: modul =" << listMsg.at(0).numberMod
+        << " count =" << listMsg.at(0).count
+        << " Xa=" << listMsg.at(0).Xa
+        << " Ya=" << listMsg.at(0).Ya
+        << " Za=" << listMsg.at(0).Za
+        << " Xg=" << listMsg.at(0).Xg
+        << " Yg=" << listMsg.at(0).Yg
+        << " Zg=" << listMsg.at(0).Zg
+        << " Ta=" << listMsg.at(0).Ta
+        << " Tg=" << listMsg.at(0).Tg;
+        viewInt = 0;
+        }
+        listMsg.clear();
+
     }
 }

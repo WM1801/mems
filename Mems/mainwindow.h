@@ -21,6 +21,7 @@ public:
     DlgRs* dlgRS;
     ViewPort* vPort;
     ParsData *pars;
+    int viewInt;
 
     QByteArray data;
 
