@@ -21,6 +21,26 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(getParsDataMemsList(QList<FormatMsg::DataMems>)));
    viewInt = 0;
 
+   //log
+   lgMems = new LogMems();
+   enabWriteLog = false;
+   maxRecordValue = 0;
+   currentRecordValue = 0;
+   connect(lgMems, SIGNAL(sPressEnabLog(bool, int)),
+           this, SLOT(startEndWriteLog(bool, int )));
+   connect(lgMems, SIGNAL(sPressViewFile()),
+           this, SLOT(startViewFileLog()));
+
+
+ /*  QString tt = wFile.createFile("modTest");
+   wFile.addStr("Hello");
+   wFile.addStr(tt, "Gudbay");
+   QString nam = wFile.getNameFile();
+   wFile.addStr(tt, nam);
+   wFile.closeFile(tt);
+   wFile.viewFile(nam);*/
+
+
 }
 
 MainWindow::~MainWindow()
@@ -53,7 +73,14 @@ void MainWindow::on_actionTerminal_triggered()
 
 void MainWindow::on_actionWriteLog_triggered()
 {
-
+    if(lgMems->isVisible())
+    {
+        lgMems->hide();
+    }
+    else
+    {
+        lgMems->show();
+    }
 }
 
 void MainWindow::getParsDataMems(FormatMsg::DataMems dan)
@@ -67,6 +94,41 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
 {
     if(listMsg.size()>0)
     {
+        if(enabWriteLog)
+        {
+            if(currentRecordValue == 0)
+            {
+                wFile.createFile(" modul" + listMsg.at(0).numberMod);
+                wFile.addStr("# Xa Ya Za Xg Yg Zg");
+            }
+            foreach (FormatMsg::DataMems dM, listMsg) {
+                if(currentRecordValue<maxRecordValue)
+                {
+                    currentRecordValue++;
+                    QString s = "  ";
+                   QByteArray str;
+                   str.append(QString::number(currentRecordValue, 10));
+                   //str.append(s);
+                   //str.append(QString::number(dM.count, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Xa, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Ya, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Za, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Xg, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Yg, 10));
+                   str.append(s);
+                   str.append(QString::number(dM.Zg, 10));
+                    wFile.addStr(str);
+                    lgMems->setProgressBarLog(currentRecordValue*100/maxRecordValue);
+                }
+            }
+
+
+        }
         viewInt++;
         if(viewInt>100)
         {
@@ -85,4 +147,30 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
         listMsg.clear();
 
     }
+}
+
+void MainWindow::startEndWriteLog(bool b, int n)
+{
+    if(b)
+    {
+        lgMems->setProgressBarLog(0);
+        enabWriteLog = true;
+        maxRecordValue = n;
+        currentRecordValue = 0;
+
+    }
+    else
+    {
+        QString s = wFile.getNameFile();
+        wFile.closeFile(s);
+         enabWriteLog = false;
+         currentRecordValue = 0;
+    }
+}
+
+void MainWindow::startViewFileLog()
+{
+    QString name = wFile.getNameFile();
+    wFile.closeFile(name);
+    wFile.viewFile(name);
 }

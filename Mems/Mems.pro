@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     settingport.cpp \
     writefile.cpp \
     parsdata.cpp \
-    formatmsg.cpp
+    formatmsg.cpp \
+    logmems.cpp
 
 HEADERS  += mainwindow.h \
     dlgrs.h \
@@ -33,12 +34,14 @@ HEADERS  += mainwindow.h \
     settingport.h \
     writefile.h \
     parsdata.h \
-    formatmsg.h
+    formatmsg.h \
+    logmems.h
 
 FORMS    += mainwindow.ui \
     dlgrs.ui \
     viewport.ui \
-    parsdata.ui
+    parsdata.ui \
+    logmems.ui
 
 RESOURCES += \
     qrc.qrc

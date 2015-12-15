@@ -5,6 +5,8 @@
 #include <dlgrs.h>
 #include <viewport.h>
 #include <parsdata.h>
+#include <writefile.h>
+#include <logmems.h>
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +26,12 @@ public:
     int viewInt;
 
     QByteArray data;
+    WriteFile wFile;
+    LogMems *lgMems;
+    bool enabWriteLog;
+    int maxRecordValue;
+    int currentRecordValue;
+
 
 public slots:
     void getData(QByteArray bA);
@@ -34,6 +42,9 @@ private slots:
 
     void getParsDataMems(FormatMsg::DataMems dan);
     void getParsDataMemsList(QList<FormatMsg::DataMems> listMsg);
+
+    void startEndWriteLog(bool b, int n);
+    void startViewFileLog();
 
 private:
     Ui::MainWindow *ui;

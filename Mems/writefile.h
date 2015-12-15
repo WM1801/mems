@@ -2,6 +2,10 @@
 #define WRITEFILE_H
 
 #include <QObject>
+#include <QDate>
+#include <QTime>
+#include <QFile>
+#include <QProcess>
 
 class WriteFile : public QObject
 {
@@ -9,15 +13,18 @@ class WriteFile : public QObject
 public:
     explicit WriteFile(QObject *parent = 0);
 
-
+QString fileName;
 
 
 signals:
-
+    void newFile(QString);
 public slots:
-    void openFile(QString name);
+    QString createFile(QString name);
     void addStr(QString str);
-    void closeFile(QString name);
+    void addStr(QString name, QString str);
+    void closeFile(QString nameFile);
+    QString getNameFile();
+    void viewFile(QString name);
 
 };
 
