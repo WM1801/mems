@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Image/term.png</file>
         <file>Image/log.png</file>
+        <file>Image/clbrAcc.png</file>
+        <file>Image/clbrGyro.png</file>
     </qresource>
 </RCC>

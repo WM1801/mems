@@ -7,10 +7,14 @@
 #include <parsdata.h>
 #include <writefile.h>
 #include <logmems.h>
+#include <calibracc.h>
+
 
 namespace Ui {
 class MainWindow;
 }
+
+
 
 class MainWindow : public QMainWindow
 {
@@ -25,12 +29,18 @@ public:
     ParsData *pars;
     int viewInt;
 
+    CalibrAcc *clbrAcc;
+
+
+
     QByteArray data;
     WriteFile wFile;
     LogMems *lgMems;
     bool enabWriteLog;
     int maxRecordValue;
     int currentRecordValue;
+
+    bool bClbrAcc;
 
 
 public slots:
@@ -45,6 +55,10 @@ private slots:
 
     void startEndWriteLog(bool b, int n);
     void startViewFileLog();
+
+    void on_actionCalibrovka_ACC_triggered();
+
+    void getStateClbrAcc(bool b);
 
 private:
     Ui::MainWindow *ui;

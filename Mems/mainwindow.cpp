@@ -31,14 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
    connect(lgMems, SIGNAL(sPressViewFile()),
            this, SLOT(startViewFileLog()));
 
+    clbrAcc = new CalibrAcc();
+    bClbrAcc = false;
+    connect(clbrAcc, SIGNAL(startReadData(bool)),
+            this, SLOT(getStateClbrAcc(bool)));
 
- /*  QString tt = wFile.createFile("modTest");
-   wFile.addStr("Hello");
-   wFile.addStr(tt, "Gudbay");
-   QString nam = wFile.getNameFile();
-   wFile.addStr(tt, nam);
-   wFile.closeFile(tt);
-   wFile.viewFile(nam);*/
 
 
 }
@@ -94,6 +91,7 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
 {
     if(listMsg.size()>0)
     {
+        // write log
         if(enabWriteLog)
         {
             if(currentRecordValue == 0)
@@ -129,6 +127,15 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
 
 
         }
+        // calibr Acc
+        if(bClbrAcc)
+        {
+            foreach (FormatMsg::DataMems dM, listMsg) {
+                clbrAcc->getData(dM);
+            }
+
+        }
+
         viewInt++;
         if(viewInt>100)
         {
@@ -142,6 +149,7 @@ void MainWindow::getParsDataMemsList(QList<FormatMsg::DataMems> listMsg)
         << " Zg=" << listMsg.at(0).Zg
         << " Ta=" << listMsg.at(0).Ta
         << " Tg=" << listMsg.at(0).Tg;
+
         viewInt = 0;
         }
         listMsg.clear();
@@ -173,4 +181,21 @@ void MainWindow::startViewFileLog()
     QString name = wFile.getNameFile();
     wFile.closeFile(name);
     wFile.viewFile(name);
+}
+
+void MainWindow::on_actionCalibrovka_ACC_triggered()
+{
+    if(clbrAcc->isVisible())
+    {
+        clbrAcc->hide();
+    }
+    else
+    {
+        clbrAcc->show();
+    }
+}
+
+void MainWindow::getStateClbrAcc(bool b)
+{
+    bClbrAcc = b;
 }

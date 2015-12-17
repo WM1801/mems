@@ -33,6 +33,7 @@
    </attribute>
    <addaction name="actionTerminal"/>
    <addaction name="actionWriteLog"/>
+   <addaction name="actionCalibrovka_ACC"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionTerminal">
@@ -60,6 +61,15 @@
    </property>
    <property name="toolTip">
     <string>Записать в файл</string>
+   </property>
+  </action>
+  <action name="actionCalibrovka_ACC">
+   <property name="icon">
+    <iconset resource="qrc.qrc">
+     <normaloff>:/Image/clbrAcc.png</normaloff>:/Image/clbrAcc.png</iconset>
+   </property>
+   <property name="text">
+    <string>Calibrovka ACC</string>
    </property>
   </action>
  </widget>
